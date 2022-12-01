@@ -28,7 +28,7 @@ const Authmodal = ({setModal,isSignup,setIsSignup}) => {
     
     }
     return (
-        <div className="authmodal">
+        <div className="authmodal" style={{backgroundColor:'white',width:'350px',height:'auto',margin:'20px auto',border:'1px solid black',borderRadius:'10px',padding:'15px'}}>
             <button onClick={handclick} className="auth-button">X</button>
                 Auth Modal
                 <h2>{isSignup? "Create Account" :'Log in'}</h2>

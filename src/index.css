@@ -71,7 +71,13 @@ nav .logo_container{
             to bottom,
             rgba(0, 0, 0, 0.65) 0%,
             rgba(0, 0, 0, 0) 100%
-    ), url('images/6e9794bcedeecf5a8f8f41338a2a7345.webp')
+    ), url('images/6e9794bcedeecf5a8f8f41338a2a7345.webp');
+    /* height: 100%; */
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .overlay p
@@ -86,7 +92,8 @@ nav .logo_container{
     margin-right: auto;
     max-width: 360px;
     height: 600px;
-    background-color: rgb(255, 253, 253);
+    color:black;
+    background-color: rgb(255, 253, 253) !important;
     border-radius: 10px;
     padding: 40px;
 /* max-width: 400px;
