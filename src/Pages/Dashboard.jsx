@@ -41,6 +41,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <ChatContainer></ChatContainer>
+      <div className="cardwidth">
       <div className="swiper-container">
         <div className="cardContainer">
           {characters.map((character) => (
@@ -64,6 +65,7 @@ const Dashboard = () => {
           {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
