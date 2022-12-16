@@ -1,24 +1,47 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 const Authmodal = ({ setModal, isSignup, setIsSignup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
   const handclick = () => {
     setModal(false);
     console.log("hello ami ");
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (isSignup && password !== confirmPassword) {
         setError("Please match both of the password");
+        return;
       }
-      console.log("make a post request to our database ");
+
+      const response = await axios.post(
+        `http://localhost:8000/${isSignup ? "signup" : "login"}`,
+        { email, password }
+      );
+      const success = response.status === 201;
+
+      if (success && isSignup) {
+        console.log(response, "dekho to ki dise");
+        setCookie("email", response.data.email);
+        setCookie("userId", response.data.userId);
+        setCookie("token", response.data.token);
+        navigate("/onboarding");
+      }
+      if (success && !isSignup) {
+        setCookie("email", response.data.email);
+        setCookie("userId", response.data.userId);
+        setCookie("token", response.data.token);
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -45,13 +68,13 @@ const Authmodal = ({ setModal, isSignup, setIsSignup }) => {
         By Clicking this you are being agreed with the terms and conditions of
         our company
       </p>
-      <form onsubmit={onSubmit} className="formcreate">
+      <form onSubmit={onSubmit} className="formcreate">
         <input
           type="text"
           id="email"
           name="email"
           placeholder="email"
-          required="true"
+          required={true}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
@@ -59,7 +82,7 @@ const Authmodal = ({ setModal, isSignup, setIsSignup }) => {
           id="password"
           name="password"
           placeholder="password"
-          required="true"
+          required={true}
           onChange={(e) => setPassword(e.target.value)}
         />
         {isSignup && (
@@ -68,7 +91,7 @@ const Authmodal = ({ setModal, isSignup, setIsSignup }) => {
             id="ConfirmPassword"
             name="ConfirmPassword"
             placeholder="ConfirmPassword"
-            required="true"
+            required={true}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         )}
