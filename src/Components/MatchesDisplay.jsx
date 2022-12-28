@@ -13,7 +13,7 @@ const MatchesDisplay = ({ matches, setClickUser }) => {
 
   const getMatches = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/users", {
+      const response = await axios.get("https://tinderproject.vercel.app/users", {
         params: { userIds: JSON.stringify(withoutDuplicates) },
       });
       setMatchedProfiles(response.data);

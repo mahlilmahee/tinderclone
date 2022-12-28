@@ -24,7 +24,7 @@ const Authmodal = ({ setModal, isSignup, setIsSignup }) => {
       }
 
       const response = await axios.post(
-        `http://localhost:8000/${isSignup ? "signup" : "login"}`,
+        `https://tinderproject.vercel.app/${isSignup ? "signup" : "login"}`,
         { email, password }
       );
       const success = response.status === 201;

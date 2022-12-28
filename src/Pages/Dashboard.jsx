@@ -13,7 +13,7 @@ const Dashboard = () => {
   
   const callData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/user", {
+      const response = await axios.get("https://tinderproject.vercel.app/user", {
         params: { userId },
       });
       setUserData(response.data);
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   const getGenderedUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/gendered-users", {
+      const response = await axios.get("https://tinderproject.vercel.app/gendered-users", {
         params: { gender: userData.gender_interest },
       });
       setGenderedUsers(response.data);
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   const updateMatches = async (matchedUserId) => {
     try {
-      await axios.put("http://localhost:8000/addmatch", {
+      await axios.put("https://tinderproject.vercel.app/addmatch", {
         userId,
         matchedUserId,
       });

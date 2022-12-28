@@ -21,7 +21,7 @@ const ChatInput = ({
     };
 
     try {
-      await axios.post("http://localhost:8000/message", { messages });
+      await axios.post("https://tinderproject.vercel.app/message", { messages });
       getUserMessages();
       getClickedUsersMessages(), setMsg("");
     } catch (error) {

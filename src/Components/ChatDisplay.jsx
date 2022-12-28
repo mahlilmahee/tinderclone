@@ -10,7 +10,7 @@ const ChatDisplay = ({ userData, clickedUser }) => {
 
   const getUsersMessages = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/messages", {
+      const response = await axios.get("https://tinderproject.vercel.app/messages", {
         params: { userId: userId, correspondingUserId: clickedUserId },
       });
       setUsersMessages(response.data);
@@ -21,7 +21,7 @@ const ChatDisplay = ({ userData, clickedUser }) => {
 
   const getClickedUsersMessages = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/messages", {
+      const response = await axios.get("https://tinderproject.vercel.app/messages", {
         params: { userId: clickedUserId, correspondingUserId: userId },
       });
       setClickedUsersMessages(response.data);
